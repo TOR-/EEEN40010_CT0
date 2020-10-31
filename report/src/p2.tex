@@ -1,0 +1,19 @@
+\problem
+
+The partial fraction expansion of the plant (given in \cref{eq:p1 plant tf}) when the unit step is the input, as obtained using the \texttt{residue} command, is as follows:
+\begin{align*}
+	\mathcal{H}(s) = \frac{s+3.6}{s^2+20s+64}\cdot\frac{1}{s} &= -\frac{0.0646}{s+16} + \frac{0.0083}{s+4} + \frac{0.0563}{s}
+\end{align*}
+Taking the inverse Laplace transform of the above, we arrive at an expression for the step response of the system.
+\begin{align*}
+	h(t) &= 0.0563 + 0.0083\exp{-4t} -0.0646\exp{-16t}
+\end{align*}
+% Based on partial fractions explain why the step response shows overshoot.
+% TODO
+
+% Explain also why the dominance by the dominant pole is weak. 
+% TODO: How is this different from in P1?
+
+% Estimate the time which must elapse for the component of the transient due to the dominant term to be 20 times greater than the rest of the transient.
+
+% Show that this “time to dominance” is large relative to the expected 2% settling time as predicted by dominant pole theory.

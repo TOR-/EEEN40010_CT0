@@ -1,0 +1,30 @@
+\problem
+
+\Cref{fig:p4 steps annotations} gives the step responses and settling times for $k\in\left\{0.1,0.5,2\right\}$ and $z\in\left\{0.1,0.5,2\right\}$. The steady state error is zero for every combination of positive $k$ and $z$. There is zero percentage overshoot for any choice of $k$ and $z$. The closed loop poles are given in \cref{tab:p4 cl poles}
+\begin{equation}
+	\label{p4:PI controller}
+	\mathcal{G}_c = \frac{k(s+z)}{s}
+\end{equation}
+
+\ffigures{p4-steps-annotations.png/Step responses for various values of $k$|the proportional gain|and $z$| the controller zero./fig:p4 steps annotations}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{ccccc}
+		\toprule
+		k & z & pole 1 & pole 2 & pole 3\\
+		\cmidrule(r){1-1}\cmidrule(lr){2-2}\cmidrule(lr){3-5}
+		\num{0.100} & \num{0.100} & \num{-16.103} & \num{-3.997} & \num{-0.001}\\
+		\num{0.100} & \num{0.500} & \num{-16.100} & \num{-3.997} & \num{-0.003}\\
+		\num{0.100} & \num{2.000} & \num{-16.090} & \num{-3.998} & \num{-0.011}\\
+		\num{0.500} & \num{0.100} & \num{-16.513} & \num{-3.984} & \num{-0.003}\\
+		\num{0.500} & \num{0.500} & \num{-16.500} & \num{-3.986} & \num{-0.014}\\
+		\num{0.500} & \num{2.000} & \num{-16.453} & \num{-3.992} & \num{-0.055}\\
+		\num{2.000} & \num{0.100} & \num{-18.046} & \num{-3.944} & \num{-0.010}\\
+		\num{2.000} & \num{0.500} & \num{-18.000} & \num{-3.949} & \num{-0.051}\\
+		\num{2.000} & \num{2.000} & \num{-17.827} & \num{-3.970} & \num{-0.203}\\
+		\bottomrule
+	\end{tabular}
+	\caption{Closed loop poles of plant \cref{eq:p1 plant tf} in a unity negative feedback loop with controller \cref{p4:PI controller}.}
+	\label{p4:cl poles}
+\end{table}

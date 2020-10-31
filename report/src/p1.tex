@@ -1,0 +1,47 @@
+\problem
+
+The plant is given in \cref{eq:p1 plant tf}.
+
+\begin{equation}
+\label{eq:p1 plant tf}
+\mathcal{H}\left(s\right) = \frac{s+3.6}{s^2+20s+64}
+\end{equation}
+
+The poles of this plant are $\left\{-16, -4\right\}$ and it has a zero at $-3.6$.
+
+The DC gain of the plant is $0.05625$. This was found by evaluating \cref{eq:p1 plant tf} at $s=0$.
+
+The steady-state value of the response to a unit step was calculated using the \texttt{residue} command in \matlab to get the partial fraction expansion of the product of the laplace transform of the unit step and the transfer function. The denominator corresponding to the pole at 0 is the steady-state value, $0.05625$.
+
+There is a potentially dominant pole at $-4$. This should result in a 2\% settling time of $\frac{4}{4}=\SI{1}{\second}$ and, if the pole truly is dominant, no overshoot.
+
+The step response of this plant is given in \cref{fig:p1 step}. Characteristics visible on the plot are reproduced in \cref{tab:p1 step characteristics}.
+
+\begin{table}[h]
+    \centering
+    \caption{Characteristics visible in step response plot \cref{fig:p1 step}}
+    \label{tab:p1 step characteristics}
+    \begin{tabular}{lcc}
+        \toprule
+        &Observed value&Predicted Value\\
+        Steady-state value&0.0563&0.05625\\
+        10\% to 90\% rise time&\SI{0.105}{\second}&-\\
+        2\% settling time&\SI{0.496}{\second}&\SI{1}{\second}\\
+        Percentage overshoot&3.54\%&0\%\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+% Explain any discrepancies between the predicted and actual values of steady-state value, 2% settling time and the percentage overshoot. 
+
+The predicted and observed steady state values are identical to the level of precision given in the plot. The 2\% settling time and the percentage overshoot values differ however. This is caused by the supposed dominant pole at -4 not being sufficiently dominant for the plant's response to approximate that of a first order system. The step response in the time domain is given in \cref{eq:p1 step time}. This shows that the non-dominant pole at -16 is $7\times$ greater than the pole at -4; since this pole is four times more negative and has a greater magnitude than the supposed dominant pole, this will decrease the settling time. The dominant pole's diminished magnitude relative to the non-dominant pole will also cause overshoot to occur, as the time taken for the dominant pole to assert its dominance is increased.
+
+\begin{equation}
+	\label{eq:p1 step time}
+	h(t) = 0.0563 + 0.0083\exp{-4t} -0.0646\exp{-16t}
+\end{equation}
+
+
+\ffigures{p1-step.png/Step response for \cref{eq:p1 plant tf}/fig:p1 step}
+
+As \cref{fig:p1 step} shows, the step response exhibits overshoot but no ringing.
