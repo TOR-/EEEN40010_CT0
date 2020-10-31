@@ -2,10 +2,54 @@
 
 \begin{equation}
 	\label{eq:p3 plant 1}
-	\mathcal{H}_1 = \frac{1}{s^2 + 50 s + 184}
+	\mathcal{G}_1 = \frac{1}{s^2 + 50 s + 184}
 \end{equation}
 
 \begin{equation}
 	\label{eq:p3 plant 2}
-	\mathcal{H}_2 = \frac{s+16}{s^2 + 50 s + 184}
+	\mathcal{G}_2 = \frac{s+16}{s^2 + 50 s + 184}
 \end{equation}
+
+\smallskip
+\large\textbf{Predicted values}\\
+Evaluating the plant transfer functions at $s=0$ gives dc gains of $\mathcal{G}_{1,0}=\num{5.43e-3}$ and $\mathcal{G}_{2,0}=\num{86.96e-3}$.
+
+The formula $t_s\simeq 4\tau=\frac{4}{\sigma}$ gives approximate 2\% settling times for the plants|assuming they can be approximated as first-order systems with a pole at $-\sigma$|of $t_{s,1}=t_{s,2}=\SI{1}{\second}$.
+
+As the plants are being assumed to be first order systems (i.e. they have a dominant pole), there should be 0\% overshoot for either.
+
+\smallskip
+\large\textbf{\matlab calculations}\\
+\Cref{fig:p3 step} gives the values of the steady-state response, the settling time, and the percentage overshoot for both plants.
+
+The steady state values for booth plants are identical to the predicted values to three significant digits.
+
+The 2\% settling time of the first plant is identical to the predicted value. The settling time of the second plant differs by $0.071$ ($7.1\%$ error) which is quite close.
+
+Neither plant exhibits any overshoot.\\
+
+\ffigures{p3-step.png/Step responses of \cref{eq:p3 plant 1,eq:p3 plant 2}/fig:p3 step}
+
+Using the \texttt{residue} command, the poles of both systems are at $-4$ and $-46$. This gives a partial fraction expansion for both systems (with $A$ and $B$ differing) of 
+$$
+G(s) = \frac{A}{s+4}+\frac{B}{s+46}
+$$
+Via the inverse laplace transform, we get the time domain representation:
+$$
+g(t) = A\exp{-4t}+B\exp{-46t}
+$$
+Filling in values for $A$ and $B$ for each plant:
+\begin{align*}
+	g_1(t) &\simeq 0.0238\exp{-4t} - 0.0238\exp{-46t}\\
+	g_2(t) &\simeq 0.2857\exp{-4t} + 0.7143\exp{-46t}
+\end{align*}
+The term with the time constant $\tau=\frac{1}{46}$ will decay much faster than the term with $\tau=\frac{1}{4}$, thus both plants will exhibit behaviour very similar to a first order system i.e. no overshoot.\\
+
+The step response of both plants is given by the product of their transfer function with the laplace transform of the step response, $\frac{1}{s}$. The inverse laplace transform of the equation formed from the partial fraction expansion of the result is the time-domain step response.
+\begin{align*}
+	\mathcal{G}_1 &= \frac{0.0005}{s+46}- \frac{0.0060}{s+4}+\frac{0.0054}{s}\\
+	\mathcal{G}_2 &= -\frac{0.0155}{s+46}- \frac{0.0714}{s+4}+\frac{0.0870}{s}\\
+&\text{Applying inverse Laplace}\\
+g_1&= 0.0054-{0.0060}\exp{-4t}+{0.0005}\exp{-46t}\\
+g_2&= 0.0870- {0.0714}\exp{-4t}-{0.0155}\exp{-46t}
+\end{align*}
