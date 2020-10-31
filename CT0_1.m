@@ -19,11 +19,9 @@ DC_gain = polyval(N1,0)/polyval(D1,0)
 % then pole at 0, i.e. no e^(-pole) in time domain
 response_ss = R(P==0)
 % Based on the potentially dominant pole what value would you predict for 2% settling time and percentage overshoot?
-t_2pc = min(P)
-po = R(P==min(P))/response_ss
+t_2pc = 4/-max(P(P~=0))
 % Plot the step response 
-step(H1)
-close all
+%step(H1)
 %print('report/img/p1-step','-dpng');
 % and determine the steady-state value,
 % the 10% to 90% rise time, 
