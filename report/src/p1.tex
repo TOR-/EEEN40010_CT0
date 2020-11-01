@@ -11,9 +11,13 @@ The poles of this plant are $\left\{-16, -4\right\}$ and it has a zero at $-3.6$
 
 The DC gain of the plant is $0.05625$. This was found by evaluating \cref{eq:p1 plant tf} at $s=0$.
 
-The steady-state value of the response to a unit step was calculated using the \texttt{residue} command in \matlab to get the partial fraction expansion of the product of the laplace transform of the unit step and the transfer function. The denominator corresponding to the pole at 0 is the steady-state value, $0.05625$.
+The steady-state value of the response to a unit step was calculated using the \texttt{residue} command in \matlab to get the partial fraction expansion of the product of the laplace transform of the unit step $\frac{1}{s}$ and the plant transfer function. The denominator corresponding to the pole at 0 is the steady-state value, $0.05625$, as this term appears in the time-domain representation of the plant transfer function as $0.05625\exp{-0\cdot t}$ and is therefore constant $\forall t$.
 
-There is a potentially dominant pole at $-4$. This should result in a 2\% settling time of $\frac{4}{4}=\SI{1}{\second}$ and, if the pole truly is dominant, no overshoot.
+There is a potentially dominant pole at $-4$. This should result in a 2\% settling time of $\frac{4}{4}=\SI{1}{\second}$. 
+
+There should be no overshoot if this is a first order system.
+
+\smallskip\textbf{Numerical results \& comparison}
 
 The step response of this plant is given in \cref{fig:p1 step}. Characteristics visible on the plot are reproduced in \cref{tab:p1 step characteristics}.
 
@@ -34,7 +38,7 @@ The step response of this plant is given in \cref{fig:p1 step}. Characteristics 
 
 % Explain any discrepancies between the predicted and actual values of steady-state value, 2% settling time and the percentage overshoot. 
 
-The predicted and observed steady state values are identical to the level of precision given in the plot. The 2\% settling time and the percentage overshoot values differ however. This is caused by the supposed dominant pole at -4 not being sufficiently dominant for the plant's response to approximate that of a first order system. The step response in the time domain is given in \cref{eq:p1 step time}. This shows that the non-dominant pole at -16 is $7\times$ greater than the pole at -4; since this pole is four times more negative and has a greater magnitude than the supposed dominant pole, this will decrease the settling time. The dominant pole's diminished magnitude relative to the non-dominant pole will also cause overshoot to occur, as the time taken for the dominant pole to assert its dominance is increased.
+The predicted and observed steady state values are identical to the level of precision given in the plot. The 2\% settling time and the percentage overshoot values differ however. This is caused by the supposed dominant pole at -4 not being sufficiently dominant for the plant's response to well approximate that of a first order system. The step response in the time domain is given in \cref{eq:p1 step time}. This shows that the non-dominant pole at -16 is $7\times$ greater than the pole at -4; since this pole is four times more negative and has a greater magnitude than the supposed dominant pole, this will decrease the settling time. The dominant pole's diminished magnitude relative to the non-dominant pole will also cause overshoot to occur, as the time taken for the dominant pole to assert its dominance is increased.
 
 \begin{equation}
 	\label{eq:p1 step time}
