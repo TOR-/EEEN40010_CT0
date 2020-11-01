@@ -1,0 +1,33 @@
+\problem
+
+\begin{captioneq}[h]
+	\centering
+	\begin{align*}
+		\label{eq:p5 system}
+		\dot{\tilde{x}} &= \frac{C_dA_d\sqrt{2g}}{A}\left(\sqrt{x_r}-\sqrt{x_r-\tilde{x}}\right)+\frac{\tilde{q}_{in}}{A}\\
+		A&=22\quad x_r = 4\quad  C_d=3\quad  A_d=\frac{4}{3}
+	\end{align*}
+	\caption{Liquid level system}
+\end{captioneq}
+
+From the lecture notes, we get an equation for the operating point value for $Q_{in}$, $Q_{in,r}$:
+\begin{equation}
+	\label{eq:p5 lin}
+Q_{in,r} = C_dA_d\sqrt{2gx_r} = 35.4356
+\end{equation}
+
+The flow offset variable $\tilde{q}_in$ was set to various fractions of the operating point value $Q_{in,r}$ and the equation solved for $\tilde{x}$, the deviation of the water height, using \texttt{ode45}. The resulting graph is in \cref{fig:p5 qin}.
+
+\ffigures{p5-qin.png/Graph of the deviation of the water level $\tilde{x}$ from its operating point value $x_r$./fig:p5 qin}
+
+\textbf{A local linearised model} from the lecture notes is given below:
+$$
+\dot{\tilde{x}} = - \frac{C_dA_d\sqrt{g}}{A\sqrt{2x_r}}\tilde{x} + \frac{1}{A}\tilde{q}_{in} 
+$$
+\Cref{fig:p5 lin} gives plots comparing this model to the general global model solved earlier.
+
+For low values of $\tilde{q}_{in}$, the steady-state value of the linearised model agrees rather well with the global model; as $\tilde{q}_{in}$ increases, the final values start to diverge, with the linearised model underestimating the steady state value of the global model.
+
+The shapes of the curves remain similar throughout all values of $\tilde{q}_{in}$, along with the initial value of $\tilde{x}=x_r$.
+
+\ffigures{p5-lin.png/Local linearised model \cref{eq:p5 lin} in comparison with general model \cref{eq:p5 system} for various increases in input flow $\tilde{q}_{in}$./fig:p5 lin}
