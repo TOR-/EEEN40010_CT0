@@ -9,11 +9,27 @@ Taking the inverse Laplace transform of the above, we arrive at an expression fo
 	h(t) &= 0.0563 + 0.0083\exp{-4t} -0.0646\exp{-16t}
 \end{align*}
 % Based on partial fractions explain why the step response shows overshoot.
-% TODO
+
+\textbf{The step response shows overshoot} because the coefficient of the most dominant pole, $s=-4$, has a positive sign. The sum of this and the DC gain will therefore be greater than the steady-state value for some period before the $s=-4$ term approaches zero.
 
 % Explain also why the dominance by the dominant pole is weak. 
-% TODO: How is this different from in P1?
+
+\textbf{The dominance by the dominated pole is weak} because the magnitude of the dominant pole's coefficient is a much less than that of the next most significant pole, at $s=-16$ ($\approx8\times$ smaller).
 
 % Estimate the time which must elapse for the component of the transient due to the dominant term to be 20 times greater than the rest of the transient.
 
+The time $t_{d}$ for the dominant term's magnitude to be at least 20 times that of the rest of the transient is calculated as follows:
+\begin{align*}
+	\frac{0.0083\exp{-4t_d}}{0.0646\exp{-16t_d}} &= 20\\
+	-4t_d + 16 t_d&= \ln{\left(\frac{0.0646}{0.0083}\cdot 20\right)}\\
+	t_d = \SI{0.4206}{\second}
+\end{align*}
+
 % Show that this “time to dominance” is large relative to the expected 2% settling time as predicted by dominant pole theory.
+
+\textbf{Dominant pole theory predicts} a settling time of $t_{s,2\%}=\SI{1}{\second}$. 
+$$
+\frac{t_d}{t_{s}} = 42\%
+$$
+
+42\% is a significant fraction of the settling time.  
